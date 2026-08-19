@@ -14,17 +14,19 @@ ArkTS UI 宿主工程，对接 [ohos-native-bindings](../ohos-native-bindings) �
 ## 使用
 
 ```sh
-pnpm install            # 安装 prek / oxk
+pnpm install            # 安装 prek / oxk / rimraf
 pnpm exec prek install  # 安装 git pre-commit hooks（提交前自动 oxk format + lint）
 
-just sync-rust          # 构建 bindings 仓库全部 example 并拷贝 .so/.d.ts（或 just sync-rust arkui 单个）
-just build-hap          # arkdown 打包 debug hap
-just install            # hdc 安装到真机
-just run                # 一条龙：sync-rust -> build-hap -> install -> 启动
+pnpm sync:rust          # 构建 bindings 仓库全部 example 并拷贝 .so/.d.ts（或 pnpm sync:rust -- arkui 单个）
+pnpm build:hap          # arkdown 打包 debug hap
+pnpm install:hap        # hdc 安装 hap 到真机
+pnpm start              # 启动真机上的 app
+pnpm run                # 一条龙：sync:rust -> build:hap -> install:hap -> start
 
-just format             # oxk 格式化全部 ArkTS
-just lint               # oxk lint
-just check              # prek 跑全部 hooks
+pnpm format             # oxk 格式化全部 ArkTS
+pnpm lint               # oxk lint
+pnpm check              # prek 跑全部 hooks
+pnpm clean              # 清理构建产物
 ```
 
 bindings 仓库定位：默认取同级目录 `../ohos-native-bindings`；作为 submodule 检出时取父目录；

@@ -1,50 +1,44 @@
 {
   module: {
-    name: "entry",
-    type: "entry",
-    description: "$string:module_desc",
-    mainElement: "EntryAbility",
-    deviceTypes: [
-      "phone"
-    ],
+    name: 'entry',
+    type: 'entry',
+    description: '$string:module_desc',
+    mainElement: 'EntryAbility',
+    deviceTypes: ['phone'],
     deliveryWithInstall: true,
     installationFree: false,
-    pages: "$profile:main_pages",
+    pages: '$profile:main_pages',
     requestPermissions: [
       {
         // vibrator demo (normal level, granted at install)
-        "name": "ohos.permission.VIBRATE"
+        "name": 'ohos.permission.VIBRATE',
       },
       {
         // sensor demo (accelerometer)
-        "name": "ohos.permission.ACCELEROMETER"
+        "name": 'ohos.permission.ACCELEROMETER',
       },
       {
         // net_connection demo (http probe)
-        "name": "ohos.permission.INTERNET"
-      }
+        "name": 'ohos.permission.INTERNET',
+      },
     ],
     abilities: [
       {
-        name: "EntryAbility",
-        srcEntry: "./ets/entryability/EntryAbility.ets",
-        description: "$string:EntryAbility_desc",
-        icon: "$media:layered_image",
-        label: "$string:EntryAbility_label",
+        name: 'EntryAbility',
+        srcEntry: './ets/entryability/EntryAbility.ets',
+        description: '$string:EntryAbility_desc',
+        icon: '$media:layered_image',
+        label: '$string:EntryAbility_label',
         exported: true,
-        startWindowIcon: "$media:startIcon",
-        startWindowBackground: "$color:start_window_background",
+        startWindowIcon: '$media:startIcon',
+        startWindowBackground: '$color:start_window_background',
         skills: [
           {
-            entities: [
-              "entity.system.home"
-            ],
-            actions: [
-              "ohos.want.action.home"
-            ]
-          }
-        ]
-      }
-    ]
-  }
+            entities: ['entity.system.home'],
+            actions: ['ohos.want.action.home'],
+          },
+        ],
+      },
+    ],
+  },
 }

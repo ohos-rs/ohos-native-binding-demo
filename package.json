@@ -4,12 +4,19 @@
   "private": true,
   "description": "ArkTS UI host app for the ohos-native-bindings Rust examples",
   "scripts": {
+    "sync:rust": "./scripts/sync-rust.sh",
+    "build:hap": "arkdown build --project . --target hap --mode debug",
+    "install:hap": "hdc install -r entry/build/default/outputs/default/entry-default-signed.hap",
+    "start": "hdc shell \"aa start -a EntryAbility -b com.richerfu.h_openconnect\"",
+    "run": "npm run sync:rust && npm run build:hap && npm run install:hap && npm run start",
     "format": "oxk format entry/",
     "lint": "oxk lint entry/",
-    "precommit": "prek run --all-files"
+    "check": "prek run --all-files",
+    "clean": "rimraf entry/build .hvigor oh_modules entry/oh_modules node_modules"
   },
   "devDependencies": {
     "@j178/prek": "^0.4.14",
-    "@ohos-rs/oxk": "^0.7.0"
+    "@ohos-rs/oxk": "^0.7.0",
+    "rimraf": "^6.0.1"
   }
 }
