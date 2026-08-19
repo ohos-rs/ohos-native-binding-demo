@@ -1,0 +1,17 @@
+# Build outputs
+entry/build/
+entry/libs/
+entry/src/main/ets/types/
+build/
+.hvigor/
+oh_modules/
+oh-package-lock.json5
+*.hap
+
+# Node toolchain (prek / oxk are devDependencies, not vendored)
+node_modules/
+
+# IDE
+.idea/
+.DS_Store
+.vscode/

@@ -1,0 +1,7 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "ohos-native-bindings demos host" },
+    { "name": "EntryAbility_desc", "value": "ohos-native-bindings demos host" },
+    { "name": "EntryAbility_label", "value": "ohos-rs demos" }
+  ]
+}

@@ -1,0 +1,34 @@
+# prek (pre-commit compatible) hook configuration.
+# Install hooks after clone:  pnpm install && pnpm exec prek install
+minimum_prek_version: "0.4.0"
+
+repos:
+  # Format ArkTS sources with oxk before commit. The hook rewrites files in
+  # place; if it changes anything the commit is rejected once — re-stage
+  # (`git add -u`) and commit again.
+  - repo: local
+    hooks:
+      - id: oxk-format
+        name: oxk format
+        entry: pnpm exec oxk format
+        language: system
+        files: \.ets$
+        stages: [pre-commit]
+
+      # Lint ArkTS sources with oxk (warnings do not fail, errors do).
+      - id: oxk-lint
+        name: oxk lint
+        entry: pnpm exec oxk lint
+        language: system
+        files: \.ets$
+        stages: [pre-commit]
+
+      # Keep the auto-generated Rust demo type declarations out of commits —
+      # they are synced from the bindings repo by scripts/sync-rust.sh.
+      - id: no-generated-artifacts
+        name: block generated artifacts
+        entry: bash -c 'git diff --cached --name-only --diff-filter=ACM | grep -E "(^|/)entry/libs/|(^|/)entry/src/main/ets/types/" && { echo "Do not commit generated .so/d.ts artifacts (synced by scripts/sync-rust.sh)" >&2; exit 1; } || true'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]

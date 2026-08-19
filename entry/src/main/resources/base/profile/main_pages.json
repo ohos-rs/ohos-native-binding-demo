@@ -1,0 +1,18 @@
+{
+  "src": [
+    "pages/Index",
+    "pages/ArkWeb",
+    "pages/ArkUI",
+    "pages/DisplaySoloist",
+    "pages/Hilog",
+    "pages/Ime",
+    "pages/Jsvm",
+    "pages/NetConnection",
+    "pages/Pasteboard",
+    "pages/Raw",
+    "pages/Sensor",
+    "pages/Vibrator",
+    "pages/Vsync",
+    "pages/XComp"
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "ohos-native-bindings-demos",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ArkTS UI host app for the ohos-native-bindings Rust examples",
+  "scripts": {
+    "format": "oxk format entry/",
+    "lint": "oxk lint entry/",
+    "precommit": "prek run --all-files"
+  },
+  "devDependencies": {
+    "@j178/prek": "^0.4.14",
+    "@ohos-rs/oxk": "^0.7.0"
+  }
+}
