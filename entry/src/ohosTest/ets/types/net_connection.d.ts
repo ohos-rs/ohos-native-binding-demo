@@ -2,20 +2,21 @@
 /* eslint-disable */
 
 /** Net ids of every connected network. */
-export declare function allNetIds(): string;
+export declare function allNetIds(): string
 
-export declare function currentProxyInfo(): string;
+export declare function currentProxyInfo(): string
 
 /** Capabilities and connection properties of the default network. */
-export declare function defaultNetInfo(): string;
+export declare function defaultNetInfo(): string
 
 /** Whether the default network is metered. */
-export declare function defaultNetMetered(): boolean;
+export declare function defaultNetMetered(): boolean
 
-export declare function googleVpnProbe(): string;
+export declare function googleVpnProbe(): string
 
 /** Whether a default network exists. */
-export declare function hasDefaultNet(): boolean;
+export declare function hasDefaultNet(): boolean
 
 /** Resolve a host name through the default network's DNS. */
-export declare function resolveHost(host: string): string;
+export declare function resolveHost(host: string): string
+

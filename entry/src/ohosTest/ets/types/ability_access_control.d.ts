@@ -2,7 +2,8 @@
 /* eslint-disable */
 
 /** Check a single HarmonyOS permission on this process. */
-export declare function checkPermission(name: string): boolean;
+export declare function checkPermission(name: string): boolean
 
 /** Check the permissions this demo actually declares / uses. */
-export declare function smoke(): string;
+export declare function smoke(): string
+

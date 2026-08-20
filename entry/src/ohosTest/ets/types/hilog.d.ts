@@ -2,17 +2,18 @@
 /* eslint-disable */
 
 /** Log at every level through an instance logger with a custom tag/domain. */
-export declare function customTagLogs(): void;
+export declare function customTagLogs(): void
 
-export declare function debug(): void;
+export declare function debug(): void
 
-export declare function error(): void;
+export declare function error(): void
 
-export declare function info(): void;
+export declare function info(): void
 
-export declare function log(): void;
+export declare function log(): void
 
 /** Update the global logger tag/domain used by the free functions. */
-export declare function setGlobalTag(tag: string): void;
+export declare function setGlobalTag(tag: string): void
 
-export declare function warn(): void;
+export declare function warn(): void
+
