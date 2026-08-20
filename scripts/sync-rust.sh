@@ -15,6 +15,7 @@ set -euo pipefail
 DEMO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 LIBS_DIR="$DEMO_ROOT/entry/libs/arm64-v8a"
 TYPES_DIR="$DEMO_ROOT/entry/src/main/ets/types"
+TEST_TYPES_DIR="$DEMO_ROOT/entry/src/ohosTest/ets/types"
 
 # --- locate the bindings repo -------------------------------------------------
 find_bindings() {
@@ -52,14 +53,27 @@ BINDINGS="$(find_bindings)"
 echo "bindings repo: $BINDINGS"
 
 # --- pick demos ----------------------------------------------------------------
-ALL_DEMOS=(ark_web arkui display_soloist hilog ime jsvm net_connection pasteboard raw sensor vibrator vsync xcomponent)
+ALL_DEMOS=(
+  ability_access_control ark_web arkui arkui_input ashmem asset bundle camera
+  display display_soloist drawing fileshare fileuri hilog huks ime image
+  image_native init jsvm native_buffer native_window net_connection net_stack
+  pasteboard qos raw sensor udmf vibrator vsync xcomponent
+)
+# HMS OpenGTX needs the real libopengtx from the HMS SDK; it is not in the
+# OpenHarmony NDK. Build it separately: scripts/sync-rust.sh opengtx
 if [ $# -gt 0 ]; then
   DEMOS=("$@")
 else
   DEMOS=("${ALL_DEMOS[@]}")
 fi
 
-mkdir -p "$LIBS_DIR" "$TYPES_DIR"
+mkdir -p "$LIBS_DIR" "$TYPES_DIR" "$TEST_TYPES_DIR"
+
+# Full sync starts from a clean libs dir so renamed/removed demos do not
+# leave stale .so files behind.
+if [ ${#DEMOS[@]} -eq ${#ALL_DEMOS[@]} ]; then
+  rm -f "$LIBS_DIR"/lib*.so
+fi
 
 failed=()
 for demo in "${DEMOS[@]}"; do
@@ -77,19 +91,23 @@ for demo in "${DEMOS[@]}"; do
     continue
   fi
 
-  # The .so name derives from the cargo package name ('-' becomes '_'),
-  # not from the directory name (e.g. examples/arkui builds libexample.so).
-  so_file="$(find "$example_dir/dist/arm64-v8a" -maxdepth 1 -name '*.so' | head -1 || true)"
-  if [ -z "$so_file" ]; then
-    echo "error: no .so produced for $demo in $example_dir/dist/arm64-v8a" >&2
+  # Every example crate is named <demo>_test, so the .so is always
+  # lib<demo>_test.so — the *_test suffix keeps ESM module names from
+  # colliding with system modules (qos, ability_access_control, ...).
+  # ohrs may also copy dependency .so files into dist/; pick this crate's own.
+  pkg_name="$(awk -F '"' '/^name[[:space:]]*=/ { print $2; exit }' "$example_dir/Cargo.toml")"
+  so_name="lib${pkg_name//-/_}.so"
+  so_file="$example_dir/dist/arm64-v8a/$so_name"
+  if [ ! -f "$so_file" ]; then
+    echo "error: $so_name not produced for $demo in $example_dir/dist/arm64-v8a" >&2
     failed+=("$demo")
     continue
   fi
 
   cp "$so_file" "$LIBS_DIR/"
   cp "$example_dir/dist/index.d.ts" "$TYPES_DIR/$demo.d.ts"
+  cp "$example_dir/dist/index.d.ts" "$TEST_TYPES_DIR/$demo.d.ts"
   echo "    $(basename "$so_file") -> entry/libs/arm64-v8a/"
-  echo "    index.d.ts       -> entry/src/main/ets/types/$demo.d.ts"
 done
 
 if [ ${#failed[@]} -gt 0 ]; then

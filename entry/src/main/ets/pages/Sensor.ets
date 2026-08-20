@@ -1,5 +1,5 @@
 import { router } from "@kit.ArkUI";
-import { sensorList, sensorTest, subscribeSensor, unsubscribeSensor } from "libsensor.so";
+import { sensorList, sensorTest, subscribeSensor, unsubscribeSensor } from "libsensor_test.so";
 
 @Entry
 @Component

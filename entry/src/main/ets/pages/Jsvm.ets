@@ -13,7 +13,7 @@ import {
   typeTagRoundtrip,
   typedArrayRoundtrip,
   wrapRoundtrip,
-} from "libjsvm_example.so";
+} from "libjsvm_test.so";
 
 @Entry
 @Component

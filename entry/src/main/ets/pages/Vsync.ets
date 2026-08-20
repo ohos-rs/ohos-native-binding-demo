@@ -5,7 +5,7 @@ import {
   requestFrameOnce,
   vsyncPeriod,
   VsyncController,
-} from "libvsync.so";
+} from "libvsync_test.so";
 import { hilog } from "@kit.PerformanceAnalysisKit";
 
 @Entry

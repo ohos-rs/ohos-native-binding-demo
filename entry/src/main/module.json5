@@ -18,8 +18,21 @@
         "name": 'ohos.permission.ACCELEROMETER',
       },
       {
-        // net_connection demo (http probe)
+        // net_connection / net_stack demos
         "name": 'ohos.permission.INTERNET',
+      },
+      {
+        // sensor demo (gyroscope button)
+        "name": 'ohos.permission.GYROSCOPE',
+      },
+      {
+        // camera demo
+        "name": 'ohos.permission.CAMERA',
+        "reason": '$string:camera_reason',
+        "usedScene": {
+          "abilities": ['EntryAbility'],
+          "when": 'inuse',
+        },
       },
     ],
     abilities: [

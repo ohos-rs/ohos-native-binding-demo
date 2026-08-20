@@ -6,8 +6,12 @@
   "scripts": {
     "sync:rust": "./scripts/sync-rust.sh",
     "build:hap": "arkdown build --project . --target hap --mode debug",
+    "build:test": "arkdown build --project . --target hap --mode debug --module entry --build-target-name ohosTest --checker oxc",
     "install:hap": "hdc install -r entry/build/default/outputs/default/entry-default-signed.hap",
+    "install:test": "hdc install -r entry/build/default/outputs/ohosTest/entry-ohosTest-signed.hap",
     "start": "hdc shell \"aa start -a EntryAbility -b com.richerfu.h_openconnect\"",
+    "test": "npm run build:hap && npm run build:test && npm run install:hap && npm run install:test && npm run start && sleep 2 && hdc shell \"aa test -b com.richerfu.h_openconnect -m entry_test -s unittest OpenHarmonyTestRunner -s timeout 300000\"",
+    "onDeviceTest": "arkdown --mode module -p module=entry -p product=default -p ohos-test-coverage=false onDeviceTest",
     "run": "npm run sync:rust && npm run build:hap && npm run install:hap && npm run start",
     "format": "oxk format entry/",
     "lint": "oxk lint entry/",

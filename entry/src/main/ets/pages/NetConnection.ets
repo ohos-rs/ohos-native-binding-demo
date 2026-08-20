@@ -7,7 +7,7 @@ import {
   googleVpnProbe,
   hasDefaultNet,
   resolveHost,
-} from "libnapi_net_connection.so";
+} from "libnet_connection_test.so";
 
 @Entry
 @Component

@@ -1,5 +1,5 @@
 import { router } from "@kit.ArkUI";
-import { customTagLogs, debug, error, info, log, setGlobalTag, warn } from "librust_hilog.so";
+import { customTagLogs, debug, error, info, log, setGlobalTag, warn } from "libhilog_test.so";
 
 @Entry
 @Component

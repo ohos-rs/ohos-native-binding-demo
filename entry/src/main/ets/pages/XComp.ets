@@ -12,9 +12,9 @@ struct XComp {
   private xComponentAttrs: XComponentAttrs = {
     id: "xcomponentId",
     type: XComponentType.SURFACE,
-    libraryname: "nativerender",
+    libraryname: "xcomponent_test",
   };
-  private xComponentContext: Record<string, (...args: object[]) => void> | undefined = undefined;
+  private xComponentContext: Record<string, Function> | undefined = undefined;
   @State note: string = "";
 
   build() {
@@ -24,11 +24,11 @@ struct XComp {
         .height("55%")
         .focusable(true)
         .onLoad((context?: object) => {
-          // The framework loads libnativerender.so and injects
+          // The framework loads libxcomponent_test.so and injects
           // __NATIVE_XCOMPONENT_OBJ__ before handing the module exports here.
           // Do NOT statically import the .so at the top of this file: the
           // module would load before the property is injected and abort.
-          this.xComponentContext = context as Record<string, (...args: object[]) => void>;
+          this.xComponentContext = context as Record<string, Function>;
         })
         .onDestroy(() => {
           console.log("XComp onDestroy");

@@ -1,7 +1,7 @@
 import { router } from "@kit.ArkUI";
 import { common } from "@kit.AbilityKit";
 import { fileIo } from "@kit.CoreFileKit";
-import { cancel, customStart, start } from "libvibrator.so";
+import { cancel, customStart, start } from "libvibrator_test.so";
 
 @Entry
 @Component

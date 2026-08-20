@@ -11,7 +11,11 @@ export default class EntryAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, "testTag", "%{public}s", "Ability onWindowStageCreate");
-    windowStage.loadContent("pages/Index", (err) => {
+    // OhosTestHost publishes the XComponent / NodeContent / Web surfaces the
+    // ohosTest Hypium suite drives. TestAbility shares this process, so the
+    // AppStorage-published surfaces are visible to it. Navigate to the demo
+    // menu (pages/Index) after a short delay.
+    windowStage.loadContent("pages/OhosTestHost", (err) => {
       if (err.code) {
         hilog.error(
           DOMAIN,

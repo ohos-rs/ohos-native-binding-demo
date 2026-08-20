@@ -6,7 +6,7 @@ import {
   refreshPage,
   registerCustomProtocol,
   watchLifecycle,
-} from "libark_web.so";
+} from "libark_web_test.so";
 
 const WEB_TAG: string = "demo_web";
 

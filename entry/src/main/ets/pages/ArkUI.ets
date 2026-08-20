@@ -1,6 +1,6 @@
 import { router } from "@kit.ArkUI";
 import { NodeContent } from "@kit.ArkUI";
-import { MyApp } from "libexample.so";
+import { MyApp } from "libarkui_test.so";
 
 @Entry
 @Component

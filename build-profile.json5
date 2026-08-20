@@ -49,6 +49,12 @@
           applyToProducts: [
             "default"
           ]
+        },
+        {
+          name: "ohosTest",
+          applyToProducts: [
+            "default"
+          ]
         }
       ]
     }

@@ -1,5 +1,5 @@
 import { router } from "@kit.ArkUI";
-import { addIme, addImeShowKeyboard, attach, detach, hide, show } from "libime.so";
+import { addIme, addImeShowKeyboard, attach, detach, hide, show } from "libime_test.so";
 
 @Entry
 @Component

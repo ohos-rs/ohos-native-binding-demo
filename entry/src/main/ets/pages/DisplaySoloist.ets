@@ -5,7 +5,7 @@ import {
   startExclusiveSoloist,
   stopDisplaySoloist,
   stopExclusiveSoloist,
-} from "libdisplay_soloist.so";
+} from "libdisplay_soloist_test.so";
 
 @Entry
 @Component
