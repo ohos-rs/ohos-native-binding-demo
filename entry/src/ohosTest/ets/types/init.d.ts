@@ -2,7 +2,6 @@
 /* eslint-disable */
 
 /** Query a SystemCapability via `canIUse`. */
-export declare function canIUse(cap: string): boolean
+export declare function canIUse(cap: string): boolean;
 
-export declare function smoke(): string
-
+export declare function smoke(): string;

@@ -2,14 +2,13 @@
 /* eslint-disable */
 
 /** Constrain the shared soloist's expected frame rate range. */
-export declare function setFrameRate(min: number, max: number, expected: number): void
+export declare function setFrameRate(min: number, max: number, expected: number): void;
 
-export declare function startDisplaySoloist(): void
+export declare function startDisplaySoloist(): void;
 
 /** Start callbacks on the exclusive-thread soloist instance. */
-export declare function startExclusiveSoloist(): void
+export declare function startExclusiveSoloist(): void;
 
-export declare function stopDisplaySoloist(): void
+export declare function stopDisplaySoloist(): void;
 
-export declare function stopExclusiveSoloist(): void
-
+export declare function stopExclusiveSoloist(): void;

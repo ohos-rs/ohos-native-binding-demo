@@ -42,6 +42,26 @@ struct OhosTestHost {
     type: XComponentType.SURFACE,
     libraryname: "camera_test",
   };
+  // Two XComponents bound to the SAME library: the binding's single global
+  // callback slot receives surface events from both instances. The E2E suite
+  // asserts the interplay via libxcomponent_test.so's surfaceEvents().
+  private xcomponentDupAttrs: XComponentAttrs = {
+    id: "ohosTest_xcomponent_dup",
+    type: XComponentType.SURFACE,
+    libraryname: "xcomponent_test",
+  };
+  // Two XComponents bound to the multi_mode variant (dispatch by id):
+  // each instance keeps independent callback state.
+  private xcomponentMultiAttrs: XComponentAttrs = {
+    id: "ohosTest_xc_multi_a",
+    type: XComponentType.SURFACE,
+    libraryname: "xcomponent_multi_test",
+  };
+  private xcomponentMultiAttrsB: XComponentAttrs = {
+    id: "ohosTest_xc_multi_b",
+    type: XComponentType.SURFACE,
+    libraryname: "xcomponent_multi_test",
+  };
   private webController: webview.WebviewController = new webview.WebviewController();
   private arkuiSlot: NodeContent = new NodeContent();
 
@@ -72,6 +92,15 @@ struct OhosTestHost {
           .width("50%")
           .height(72)
         XComponent(this.cameraAttrs)
+          .width("50%")
+          .height(72)
+      }
+      .width("100%")
+      .height(72)
+      // Same-library pair + multi_mode pair under test.
+      // TEMP-DIAG: multi pair disabled to bisect TLS pressure
+      Row({ space: 4 }) {
+        XComponent(this.xcomponentDupAttrs)
           .width("50%")
           .height(72)
       }

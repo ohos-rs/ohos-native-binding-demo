@@ -2,19 +2,18 @@
 /* eslint-disable */
 
 /**
-  * Create the IME with show_keyboard=false and register every callback the
-  * binding exposes.
-  */
-export declare function addIme(): void
+ * Create the IME with show_keyboard=false and register every callback the
+ * binding exposes.
+ */
+export declare function addIme(): void;
 
 /** Create the IME showing the keyboard immediately on attach. */
-export declare function addImeShowKeyboard(): void
+export declare function addImeShowKeyboard(): void;
 
-export declare function attach(): void
+export declare function attach(): void;
 
-export declare function detach(): void
+export declare function detach(): void;
 
-export declare function hide(): void
+export declare function hide(): void;
 
-export declare function show(): void
-
+export declare function show(): void;
