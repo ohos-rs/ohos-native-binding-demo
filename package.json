@@ -10,13 +10,15 @@
     "install:hap": "hdc install -r entry/build/default/outputs/default/entry-default-signed.hap",
     "install:test": "hdc install -r entry/build/default/outputs/ohosTest/entry-ohosTest-signed.hap",
     "start": "hdc shell \"aa start -a EntryAbility -b com.richerfu.h_openconnect\"",
-    "test": "npm run build:hap && npm run build:test && npm run install:hap && npm run install:test && hdc shell \"aa test -b com.richerfu.h_openconnect -m entry_test -s unittest OpenHarmonyTestRunner -s timeout 300000\"",
+    "test": "./scripts/run-ohostest.sh",
     "onDeviceTest": "arkdown --mode module -p module=entry -p product=default -p ohos-test-coverage=false onDeviceTest",
     "run": "npm run sync:rust && npm run build:hap && npm run install:hap && npm run start",
     "format": "oxk format entry/",
     "lint": "oxk lint entry/",
     "check": "prek run --all-files",
-    "clean": "rimraf entry/build .hvigor oh_modules entry/oh_modules node_modules"
+    "clean": "rimraf entry/build .hvigor oh_modules entry/oh_modules node_modules",
+    "test:all": "./scripts/run-ohostest.sh",
+    "test:module": "./scripts/run-ohostest.sh"
   },
   "devDependencies": {
     "@j178/prek": "^0.4.14",

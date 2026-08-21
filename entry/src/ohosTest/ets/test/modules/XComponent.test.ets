@@ -1,6 +1,6 @@
 import { describe, expect, it } from "@ohos/hypium";
-import { ranOrThrew } from "../helpers/Utils";
 import { drawXcomponent, setFrameRate, surfaceEvents } from "libxcomponent_test.so";
+import { eventsById } from "libxcomponent_multi_test.so";
 
 export default function xcomponentTest(): void {
   describe("xcomponent", () => {
@@ -28,6 +28,17 @@ export default function xcomponentTest(): void {
         message = `${e}`;
       }
       expect(message).assertContain("not initialized");
+    });
+  });
+
+  describe("xcomponent_multi", () => {
+    // multi_mode dispatch keys callbacks by XComponent id. Without a host
+    // surface the map stays empty — the deterministic baseline. The
+    // per-id dispatch itself is verified on the main app's OhosTestHost
+    // page, which mounts two XComponents (ids ohosTest_xc_multi_a/b) bound
+    // to this same library; each id accumulates its own created counter.
+    it("no-surface map is empty", 0, () => {
+      expect(eventsById()).assertEqual("");
     });
   });
 }

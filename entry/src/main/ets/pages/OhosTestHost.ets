@@ -97,11 +97,17 @@ struct OhosTestHost {
       }
       .width("100%")
       .height(72)
-      // Same-library pair + multi_mode pair under test.
-      // TEMP-DIAG: multi pair disabled to bisect TLS pressure
+      // Same-library pair (singleton callback slot) + multi_mode pair
+      // (per-id dispatch), both observable via their demo exports.
       Row({ space: 4 }) {
         XComponent(this.xcomponentDupAttrs)
-          .width("50%")
+          .width("34%")
+          .height(72)
+        XComponent(this.xcomponentMultiAttrs)
+          .width("33%")
+          .height(72)
+        XComponent(this.xcomponentMultiAttrsB)
+          .width("33%")
           .height(72)
       }
       .width("100%")
